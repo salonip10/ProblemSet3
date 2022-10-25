@@ -93,7 +93,7 @@ i = 0
 
 with open('CO-OPS__8729108__wl.csv', mode = 'r') as file:
     for line in file.readlines():
-        if(i == 0):
+        if i == 0:
             currLevel = (line.split(','))[1]
             i++
             
@@ -102,11 +102,11 @@ with open('CO-OPS__8729108__wl.csv', mode = 'r') as file:
             currLevel = (line.split(','))[1]
             i++
             
-            if((currLevel-prevLevel) > 0.25):
+            if (currLevel-prevLevel) > 0.25:
                 print("Warning: The water level increased more than 0.25 since the previous recording")
                 
-            if(currLevel > 5.0):
+            if currLevel > 5.0:
                 print("Warning: The water level is over 5.0")
                 
-            if(currLevel == Nan):
+            if currLevel == Nan:
                 print("No reading is received at this time")
