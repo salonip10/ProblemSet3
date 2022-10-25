@@ -1,0 +1,89 @@
+#Problem 1 Script
+
+waterLevArray = []
+dateTimeArray = []
+#opening the csv file
+with open('CO-OPS__8729108__wl.csv', mode = 'r') as file:
+    for line in file.readlines():
+        waterLevArray.append((line.split(','))[1])
+        dateTimeArray.append((line.split(','))[0])
+    
+    print("Highest water level: ", max(waterLevArray))
+    print("Date and time for the highest waterlevel: ", dateTimeArray[waterLevArray.index(max(waterLevArray))])
+   
+#Output:-
+#Highest water level:  6.647
+#Date and time for the highest waterlevel:  2018-10-10 18:06
+
+
+
+
+#Problem 2 Script
+
+waterLevArray = []
+dateTimeArray = []
+#opening the csv file
+with open('CO-OPS__8729108__wl.csv', mode = 'r') as file:
+    for line in file.readlines():
+        waterLevArray.append((line.split(','))[1])
+        dateTimeArray.append((line.split(','))[0])
+    
+    waterLevArray.pop(0)#remove the headers which are strings
+    dateTimeArray.pop(0)#remove the headers which are strings   
+    del waterLevArray[423] #remove the empty value in line 425
+    
+    #for the highest water level
+    print("Highest water level: ", max(waterLevArray))
+    print("Date and time for the highest water level: ", dateTimeArray[waterLevArray.index(max(waterLevArray))])
+    
+    #for the lowest water level
+    print("Lowest water level: ", min(waterLevArray))
+    print("Date and time for the lowest water level: ", dateTimeArray[waterLevArray.index(min(waterLevArray))])
+    
+    #for the average water level
+    waterLevArray = [float(i)for i in waterLevArray]
+    average = sum(waterLevArray)/len(dateTimeArray)
+    print("Average water level: ", average)
+    
+#Output:-
+#Highest water level:  6.647
+#Date and time for the highest water level:  2018-10-10 18:06
+#Lowest water level:  1.621
+#Date and time for the lowest water level:  2018-10-11 15:30
+#Average water level:  2.9782096551724146
+
+
+
+
+#Problem 3 Script
+
+waterLevArray = []
+dateTimeArray = []
+diff = []
+#opening the csv file
+with open('CO-OPS__8729108__wl.csv', mode = 'r') as file:
+    for line in file.readlines():
+        waterLevArray.append((line.split(','))[1])
+        dateTimeArray.append((line.split(','))[0])
+    
+    waterLevArray.pop(0) #remove the headers which are strings
+    dateTimeArray.pop(0) #remove the headers which are strings   
+    del waterLevArray[423] #remove the empty value in line 425
+    del dateTimeArray[423] #remove the 425 index to match the indices of the two arrays
+    
+    for i in range(0, (len(waterLevArray)-1)):
+        currValue = float(waterLevArray[i])
+        nextValue = float(waterLevArray[i+1])
+        diff.append(nextValue - currValue)
+        
+    print("Fastest rise in water level per 6-min interval: ", max(diff))
+    print("Date and time of fastest rise: ", dateTimeArray[(diff.index(max(diff)))+1])
+    #add 1 to the index to show the time stamp when the maximum difference occurred
+    
+#Output:-
+#Fastest rise in water level per 6-min interval:  0.6400000000000006
+#Date and time of fastest rise:  2018-10-10 17:42
+
+
+
+
